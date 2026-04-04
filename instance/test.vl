@@ -1,0 +1,5 @@
+defmodule mymodule
+  defspace naturals end
+  defvar x : naturals end
+  defexpression (forall x in naturals . x) end
+end
