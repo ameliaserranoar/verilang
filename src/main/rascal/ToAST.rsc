@@ -6,6 +6,10 @@ import String;
 import Syntax;
 
 public AST::Module toAST(Tree tree) {
+  // Handle start[Module] wrapper (when parsed with #start[Module])
+  if (start[Module] s := tree) {
+    return toAST(s.top);
+  }
   switch (tree) {
     case (Module) `defmodule <Id name> <Definition* defs> end`:
       return AST::moduleNode(text(name), [toDefinition(def) | def <- defs]);
